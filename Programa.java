@@ -213,7 +213,7 @@ public class Programa {
 
                 default:
 
-                    System.out.println("Opção inválida!\nEscolha entre (1-5)!!! ");
+                    System.out.println("Opção inválida!\nEscolha entre (1-7)!!! ");
             }
         }while(opcao != 7);
 
