@@ -11,11 +11,17 @@ O sistema permite criar contas, autenticar usuários e realizar operações fina
 ## ⚙️ Funcionalidades
 
 * ✅ Criação de conta com validações
+
 * 🔐 Login com autenticação e limite de tentativas
+ 
 * 💰 Depósito de valores
+  
 * 💸 Saque com verificação de saldo
+  
 * 🔁 Transferência entre contas via chave
+  
 * 📄 Exibição de dados da conta
+  
 * 🚫 Bloqueio temporário após tentativas inválidas
 
 ---
@@ -89,21 +95,21 @@ java Programa
 ## 🧠 Regras de Negócio
 
 * Senha deve ter mais de 4 caracteres
+  
 * Chaves seguem validações:
-
   * CPF → 11 dígitos
   * Email → deve conter "@"
   * Telefone → 10 ou 11 dígitos
   * RG → 9 dígitos
+   
 * Transferência:
-
   * Valor máximo: R$5000
   * Não pode transferir para si mesmo
+    
 * Saque:
-
   * Não pode exceder o saldo
+    
 * Login:
-
   * Máximo de 3 tentativas
 
 ---
@@ -125,9 +131,13 @@ java Programa
 ## 🚀 Possíveis Melhorias
 
 * Persistência de dados (arquivo ou banco de dados)
+  
 * Interface gráfica (Swing/JavaFX)
+  
 * Criptografia de senha
+  
 * Sistema de múltiplos usuários simultâneos
+  
 * Implementação de histórico de transações
 
 ---
@@ -145,8 +155,10 @@ Este projeto não deve ser utilizado em produção, pois não possui mecanismos 
 Projeto desenvolvido para fins educacionais, com foco em:
 
 * Programação Orientada a Objetos (POO)
+  
 * Estruturas de controle (if/else, loops)
+  
 * Manipulação de arrays
+  
 * Boas práticas básicas em Java
-
 ---
