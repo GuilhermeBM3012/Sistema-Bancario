@@ -189,14 +189,6 @@ java Programa
 
 Guilherme Barone Milani
 
-
----
-
-
-## 📌 Observação
-
-Este projeto não deve ser utilizado em produção, pois não possui mecanismos de segurança robustos (como criptografia de dados e autenticação segura).
-
 Projeto desenvolvido para fins educacionais, com foco em:
 
 * Programação Orientada a Objetos (POO)
@@ -206,4 +198,12 @@ Projeto desenvolvido para fins educacionais, com foco em:
 * Manipulação de arrays
   
 * Boas práticas básicas em Java
+
+---
+
+
+## 📌 Observação
+
+Este projeto não deve ser utilizado em produção, pois não possui mecanismos de segurança robustos (como criptografia de dados e autenticação segura).
+
 ---
