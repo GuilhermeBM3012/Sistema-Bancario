@@ -1,70 +1,42 @@
-# 🏦 Sistema Bancário em Java (com Login e Chave PIX)
+# 💳 Sistema Bancário em Java (Console)
 
 ## 📌 Descrição
 
-Este projeto é um **sistema bancário em Java executado no terminal**, desenvolvido para praticar conceitos de **Programação Orientada a Objetos (POO)** e lógica de programação.
+Este projeto é um sistema bancário simples desenvolvido em **Java**, executado via **console**, que simula operações básicas de um banco digital.
 
-O sistema permite criar contas, autenticar usuários, realizar operações financeiras e transferências utilizando **chave PIX**.
+O sistema permite criar contas, autenticar usuários e realizar operações financeiras como depósitos, saques e transferências, além de exibir informações da conta.
 
 ---
 
-## 🚀 Funcionalidades
+## ⚙️ Funcionalidades
 
-* 🧾 Criar conta com:
-
-  * Nome do titular
-  * Senha
-  * Chave PIX (CPF, RG, Email ou Telefone)
-
-* 🔐 Login com autenticação:
-
-  * Até 3 tentativas de senha
-
+* ✅ Criação de conta com validações
+* 🔐 Login com autenticação e limite de tentativas
 * 💰 Depósito de valores
-
-* 💸 Saque de valores
-
-* 🔄 Transferência entre contas via chave PIX
-
-* 📄 Exibição dos dados da conta logada
-
-* 🚪 Encerramento do sistema
-
----
-
-## 🧠 Conceitos Utilizados
-
-Este projeto aplica diversos conceitos fundamentais:
-
-* Programação Orientada a Objetos (POO)
-* Classes e Objetos
-* Construtores
-* Encapsulamento (`private`)
-* Métodos e validações
-* Arrays de objetos
-* Estruturas condicionais (`if`, `switch`)
-* Estruturas de repetição (`while`, `do while`)
-* Entrada de dados com `Scanner`
-* Autenticação de usuário
-* Manipulação de Strings (`equals`, `matches`)
+* 💸 Saque com verificação de saldo
+* 🔁 Transferência entre contas via chave
+* 📄 Exibição de dados da conta
+* 🚫 Bloqueio temporário após tentativas inválidas
 
 ---
 
 ## 🏗️ Estrutura do Projeto
 
-### 📁 Classe `Banco`
+O projeto é composto por duas classes principais:
 
-Representa uma conta bancária.
+### 🔹 `Banco`
 
-**Atributos:**
+Responsável por representar uma conta bancária.
 
-* Nome do titular
-* Número da conta
-* Agência
-* Dígito
-* Saldo
-* Senha
-* Chave PIX
+**Principais atributos:**
+
+* `nomeTitular`
+* `numeroContaBancaria`
+* `agencia`
+* `digito`
+* `saldoConta`
+* `senha`
+* `chave` (tipo PIX: CPF, email, telefone ou RG)
 
 **Principais métodos:**
 
@@ -72,79 +44,41 @@ Representa uma conta bancária.
 * `sacar(double valor)`
 * `transferir(Banco destino, double valor)`
 * `autenticar(String senha)`
-* `getConta()`
-* `getChave()`
 * `mostrarInformacaoConta()`
 
 ---
 
-### 📁 Classe `Programa`
+### 🔹 `Programa`
 
-Responsável pela execução do sistema.
+Responsável pela execução do sistema e interação com o usuário.
 
-**Responsabilidades:**
+**Funcionalidades:**
 
-* Exibir menu interativo
-* Criar contas
-* Gerenciar login (`usuarioLogado`)
-* Realizar operações bancárias
-* Buscar contas por:
+* Menu interativo
+* Controle de contas em um array
+* Login e sessão do usuário
+* Busca de contas por:
 
-  * número (`buscarContaPorNumero`)
-  * chave PIX (`buscarContaPorChave`)
-
----
-
-## 🔐 Sistema de Login
-
-O sistema utiliza autenticação baseada em:
-
-* Número da conta (`ex: 1000-0`)
-* Senha definida pelo usuário
-
-O login permite até **3 tentativas**, após isso a conta é temporariamente bloqueada.
+  * Número (`buscarConta_por_NumConta`)
+  * Chave (`buscarConta_por_Chave`)
 
 ---
 
-## 💳 Sistema de Chave PIX
+## ▶️ Como Executar
 
-Durante a criação da conta, o usuário escolhe o tipo de chave:
+### Pré-requisitos:
 
-1. CPF
-2. RG
-3. Email
-4. Telefone
+* Java JDK 8 ou superior instalado
 
-Cada tipo possui validação específica:
+### Passos:
 
-* CPF → 11 dígitos
-* RG → 9 dígitos
-* Email → deve conter `@`
-* Telefone → 10 ou 11 dígitos
-
----
-
-## 🔄 Transferência
-
-A transferência é realizada utilizando a **chave PIX da conta destino**.
-
-✔ Validações aplicadas:
-
-* Conta destino existente
-* Valor válido (> 0)
-* Saldo suficiente
-
----
-
-## 💻 Como executar
-
-### 1. Compilar o projeto
+1. Compile os arquivos:
 
 ```bash
 javac Banco.java Programa.java
 ```
 
-### 2. Executar o sistema
+2. Execute o programa:
 
 ```bash
 java Programa
@@ -152,64 +86,67 @@ java Programa
 
 ---
 
-## 🖥️ Exemplo de uso
+## 🧠 Regras de Negócio
 
-```
+* Senha deve ter mais de 4 caracteres
+* Chaves seguem validações:
+
+  * CPF → 11 dígitos
+  * Email → deve conter "@"
+  * Telefone → 10 ou 11 dígitos
+  * RG → 9 dígitos
+* Transferência:
+
+  * Valor máximo: R$5000
+  * Não pode transferir para si mesmo
+* Saque:
+
+  * Não pode exceder o saldo
+* Login:
+
+  * Máximo de 3 tentativas
+
+---
+
+## 📊 Exemplo de Uso
+
+```text
 1- Criar conta
 2- Login
 3- Depositar
 4- Sacar
 5- Transferir valor
-6- Mostrar informações
+6- Mostrar as informações da sua conta
 7- Sair
-
-Escolha uma opção: 1
-Nome do titular: João
-Crie uma senha: 123
-Confirme a senha: 123
-
-Tipo de chave:
-1- CPF
-2- RG
-3- EMAIL
-4- TELEFONE
-
-Digite seu email: joao@email.com
-Conta criada com sucesso!
-Número da conta: 1000-0
 ```
 
 ---
 
-## ⚠️ Limitações
+## 🚀 Possíveis Melhorias
 
-* O sistema suporta até 10 contas (uso de array fixo)
-* Não há persistência de dados (os dados são perdidos ao encerrar)
-* Interface apenas via terminal
-* Não possui criptografia de senha
-
----
-
-## 🚀 Possíveis melhorias
-
-* 🔁 Substituir array por `ArrayList`
-* 🔐 Criptografar senhas
-* 💾 Persistência em banco de dados ou arquivo
-* 📊 Histórico de transações
-* 💳 Transferência com comprovante
-* 🎨 Interface gráfica (Swing ou JavaFX)
-* 🔑 Login com chave PIX
+* Persistência de dados (arquivo ou banco de dados)
+* Interface gráfica (Swing/JavaFX)
+* Criptografia de senha
+* Sistema de múltiplos usuários simultâneos
+* Implementação de histórico de transações
 
 ---
 
 ## 👨‍💻 Autor
 
-Projeto desenvolvido para fins acadêmicos e prática de Java.
+Guilherme Barone Milani
 
 ---
 
-## 📌 Conclusão
+## 📌 Observação
 
-Este projeto simula um sistema bancário real de forma simplificada, aplicando conceitos essenciais de programação. Ele pode ser facilmente expandido para aplicações mais robustas e profissionais.
+Este projeto não deve ser utilizado em produção, pois não possui mecanismos de segurança robustos (como criptografia de dados e autenticação segura).
+
+Projeto desenvolvido para fins educacionais, com foco em:
+
+* Programação Orientada a Objetos (POO)
+* Estruturas de controle (if/else, loops)
+* Manipulação de arrays
+* Boas práticas básicas em Java
 
 ---
