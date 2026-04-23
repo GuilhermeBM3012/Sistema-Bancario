@@ -4,7 +4,7 @@ public class Programa {
     static void main() {
         Scanner ler = new Scanner(System.in);
 
-        Banco[] contas = new Banco[10];
+        Banco[] contas = new Banco[50];
 
         int opcao, totContas = 0;
         Banco usuarioLogado = null;
@@ -23,20 +23,37 @@ public class Programa {
             System.out.println(menu);
             System.out.println("Qual opção você deseja realizar? (1-7): ");
             opcao = ler.nextInt();
+            ler.nextLine();
 
             switch (opcao){
                 case 1:
-
                     System.out.println("=============\nCRIANDO CONTA\n=============");
 
                     ler.nextLine();
+                    String nome, senha;
 
                     if (totContas < contas.length) {
-                        System.out.println("Diga o nome completo do titular: ");
-                        String nome = ler.nextLine();
+                        do {
+                            System.out.println("Diga o nome completo do titular: ");
+                            nome = ler.nextLine();
 
-                        System.out.println("Diga uma senha para sua conta: ");
-                        String senha = ler.nextLine();
+                            if (nome == null || nome.trim().isEmpty())
+                                System.out.println("ERRO ---> Preencha o campo de nome! ");
+
+                        } while (nome == null || nome.trim().isEmpty());
+
+
+                        do {
+                            System.out.println("Crie uma senha para sua conta: ");
+                            senha = ler.nextLine();
+
+                            if (senha.length() <= 4)
+                                System.out.println("ERRO ---> A senha deve ter mais de 4 caracteres!\nCrie uma senha para sua conta: ");
+
+                        } while (senha.length() <= 4);
+
+
+
 
                         System.out.println("Confirme a senha: ");
                         String confirmarSenha = ler.nextLine();
@@ -47,51 +64,51 @@ public class Programa {
                             confirmarSenha = ler.nextLine();
                         }
 
-                        System.out.println("1- CPF\n2- EMAIL\n3- TELEFONE\n4- RG\nQual das opções você quer para sua chave: ");
-                        int tipoChave = ler.nextInt();
-                        ler.nextLine();
+                        int tipoChave;
+                        do {
+                            System.out.println("1- CPF\n2- EMAIL\n3- TELEFONE\n4- RG\nQual das opções você quer para sua chave: ");
+                            tipoChave = ler.nextInt();
+                            ler.nextLine();
+                        } while (tipoChave < 1 || tipoChave > 4);
 
-                        String minhaChave = "";
+                        String minhaChave;
 
                         switch (tipoChave) {
 
                             case 1:
-
-                                while (!minhaChave.matches("\\d{11}")) {
+                                do {
                                     System.out.print("Digite seu CPF: ");
                                     minhaChave = ler.nextLine();
-                                }
+                                } while (!minhaChave.matches("\\d{11}"));
 
                                 break;
+
 
                             case 2:
-
-                                while (!minhaChave.contains("@")) {
+                                do {
                                     System.out.println("Digite seu email: ");
                                     minhaChave = ler.nextLine();
-                                }
+                                } while (!minhaChave.contains("@"));
 
                                 break;
+
 
                             case 3:
-                                while (!minhaChave.matches("\\d{10,11}")) {
+                                do {
                                     System.out.println("Digite seu telefone: ");
                                     minhaChave = ler.nextLine();
-                                }
+                                } while (!minhaChave.matches("\\d{10,11}"));
 
                                 break;
 
-                            case 4:
-
-                                while (!minhaChave.matches("\\d{9}")) {
-                                    System.out.println("Digite seu rg: ");
-                                    minhaChave = ler.nextLine();
-                                }
-
-                                break;
 
                             default:
-                                System.out.println("Tipo inválido!");
+                                do {
+                                    System.out.println("Digite seu rg: ");
+                                    minhaChave = ler.nextLine();
+                                } while (!minhaChave.matches("\\d{9}"));
+
+                                break;
                         }
 
                         System.out.println("Confirme a chave: ");
@@ -115,9 +132,8 @@ public class Programa {
 
                     break;
 
-                case 2:
 
-                    ler.nextLine();
+                case 2:
 
                     System.out.println("Diga o nº da conta (ex: 1000-0): ");
                     String numConta = ler.nextLine();
@@ -129,47 +145,56 @@ public class Programa {
 
                         while (tentativas > 0){
                             System.out.println("Diga a senha da sua conta: ");
-                            String senha = ler.nextLine();
+                            String s = ler.nextLine();
 
-                            if (contas[indiceLogin].autenticar(senha)){
+                            if (contas[indiceLogin].autenticar(s)){
                                 usuarioLogado = contas[indiceLogin];
                                 System.out.println("Login realizado com sucesso!");
                                 break;
+
                             }else {
                                 tentativas--;
-                                System.out.printf("Senha incorreta.\n Tentativas restantes: %d ", tentativas);
+                                System.out.printf("Senha incorreta. Tentativas restantes: %d ", tentativas);
                             }
                         }
+
                         if (tentativas == 0)
                             System.out.println("Conta bloqueada temporariamente! ");
+
                     }else
                         System.out.println("Conta não encontrada! ");
 
                     break;
+
 
                 case 3:
 
                     if (usuarioLogado != null){
                         System.out.print("Valor para depositar: ");
                         double valor = ler.nextDouble();
+                        ler.nextLine();
 
                         usuarioLogado.depositar(valor);
+
                     }else
                         System.out.println("Você precisa fazer o login primeiro! ");
 
                     break;
+
 
                 case 4:
 
                     if (usuarioLogado != null) {
                         System.out.print("Valor para saque: ");
                         double valor = ler.nextDouble();
+                        ler.nextLine();
 
                         usuarioLogado.sacar(valor);
                     }else
                         System.out.println("Você precisa fazer o login primeiro! ");
 
                     break;
+
 
                 case 5:
 
@@ -182,8 +207,9 @@ public class Programa {
                         int indiceDestino = buscarConta_por_Chave(contas, destino, totContas);
 
                         if (indiceDestino != -1){
-                            System.out.print("Valor: ");
+                            System.out.print("Valor (máx = R$5000): ");
                             double valor = ler.nextDouble();
+                            ler.nextLine();
 
                             usuarioLogado.transferir(contas[indiceDestino], valor);
 
@@ -195,6 +221,7 @@ public class Programa {
 
                     break;
 
+
                 case 6:
 
                     if (usuarioLogado != null)
@@ -203,6 +230,7 @@ public class Programa {
                         System.out.println("Você precisa fazer o login primeiro! ");
 
                     break;
+
 
                 case 7:
 
@@ -213,7 +241,7 @@ public class Programa {
 
                 default:
 
-                    System.out.println("Opção inválida!\nEscolha entre (1-7)!!! ");
+                    System.out.println("Opção inválida! Escolha entre (1-7)!!! ");
             }
         }while(opcao != 7);
 
