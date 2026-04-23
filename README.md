@@ -1,12 +1,15 @@
 # 💳 Sistema Bancário em Java (Console)
 
+
 ## 📌 Descrição
 
 Este projeto é um sistema bancário simples desenvolvido em **Java**, executado via **console**, que simula operações básicas de um banco digital.
 
 O sistema permite criar contas, autenticar usuários e realizar operações financeiras como depósitos, saques e transferências, além de exibir informações da conta.
 
+
 ---
+
 
 ## ⚙️ Funcionalidades
 
@@ -24,35 +27,52 @@ O sistema permite criar contas, autenticar usuários e realizar operações fina
   
 * 🚫 Bloqueio temporário após tentativas inválidas
 
+
 ---
+
 
 ## 🏗️ Estrutura do Projeto
 
 O projeto é composto por duas classes principais:
 
+
 ### 🔹 `Banco`
 
 Responsável por representar uma conta bancária.
 
+
 **Principais atributos:**
 
 * `nomeTitular`
+  
 * `numeroContaBancaria`
+  
 * `agencia`
+  
 * `digito`
+  
 * `saldoConta`
+  
 * `senha`
+  
 * `chave` (tipo PIX: CPF, email, telefone ou RG)
+
 
 **Principais métodos:**
 
 * `depositar(double valor)`
+  
 * `sacar(double valor)`
+  
 * `transferir(Banco destino, double valor)`
+  
 * `autenticar(String senha)`
+  
 * `mostrarInformacaoConta()`
 
+
 ---
+
 
 ### 🔹 `Programa`
 
@@ -61,20 +81,27 @@ Responsável pela execução do sistema e interação com o usuário.
 **Funcionalidades:**
 
 * Menu interativo
+  
 * Controle de contas em um array
+  
 * Login e sessão do usuário
+  
 * Busca de contas por:
-
+  
   * Número (`buscarConta_por_NumConta`)
+    
   * Chave (`buscarConta_por_Chave`)
 
+
 ---
+
 
 ## ▶️ Como Executar
 
 ### Pré-requisitos:
 
 * Java JDK 8 ou superior instalado
+
 
 ### Passos:
 
@@ -90,29 +117,41 @@ javac Banco.java Programa.java
 java Programa
 ```
 
+
 ---
+
 
 ## 🧠 Regras de Negócio
 
 * Senha deve ter mais de 4 caracteres
   
 * Chaves seguem validações:
+  
   * CPF → 11 dígitos
+    
   * Email → deve conter "@"
+    
   * Telefone → 10 ou 11 dígitos
+    
   * RG → 9 dígitos
    
 * Transferência:
+  
   * Valor máximo: R$5000
+    
   * Não pode transferir para si mesmo
     
 * Saque:
+  
   * Não pode exceder o saldo
     
 * Login:
+  
   * Máximo de 3 tentativas
 
+
 ---
+
 
 ## 📊 Exemplo de Uso
 
@@ -126,7 +165,9 @@ java Programa
 7- Sair
 ```
 
+
 ---
+
 
 ## 🚀 Possíveis Melhorias
 
@@ -140,13 +181,17 @@ java Programa
   
 * Implementação de histórico de transações
 
+
 ---
+
 
 ## 👨‍💻 Autor
 
 Guilherme Barone Milani
 
+
 ---
+
 
 ## 📌 Observação
 
