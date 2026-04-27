@@ -58,7 +58,7 @@ public class Programa {
                         System.out.println("Confirme a senha: ");
                         String confirmarSenha = ler.nextLine();
 
-                        while (!confirmarSenha.equals(senha)){
+                        while (!contas[totContas].autenticar(confirmarSenha){
                             System.out.println("Erro! Senhas não coincidem!\n");
                             System.out.println("Confirme a senha novamente: ");
                             confirmarSenha = ler.nextLine();
